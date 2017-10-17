@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "array": "cpp",
+        "__tuple": "cpp",
+        "cstddef": "cpp",
+        "iterator": "cpp"
+    }
+}
