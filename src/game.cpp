@@ -1,6 +1,6 @@
 #include "game.h"
 
-game::game() {
+game::game() : m_players({ player(m_deck.first()), player(m_deck.second()), player(m_deck.third()), player(m_deck.fourth()) }) {
     
 };
 

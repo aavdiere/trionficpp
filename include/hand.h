@@ -4,11 +4,12 @@
 
 class hand {
 public:
-    hand(card *data);
+    hand(card * const data);
 
     uint8_t count();
-    card& remove_at_index(uint8_t index);
+    const card& remove_at_index(uint8_t index);
+    const card& operator[](uint8_t index);
 private:
-    card *m_data;
+    card * const m_data;
     uint8_t m_count;
 };

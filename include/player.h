@@ -7,10 +7,10 @@
 
 class player {
 public:
-    player();
+    player(card * const cards);
     
     suit choose_trump() const;
-    card make_move(const state& current_state);
+    const card& make_move(const state& current_state);
 private:
     hand m_hand;
 };

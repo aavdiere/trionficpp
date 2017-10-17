@@ -12,10 +12,10 @@ public:
 
     void play();
 private:
+    deck m_deck;
     std::array<player, 4> m_players;
     state m_state;
     tree m_tree;
-    deck m_deck;
 
     bool ongoing();
     void shuffle_cards();
