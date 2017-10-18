@@ -1,7 +1,7 @@
 #pragma once
 
 enum class suit {
-    spades, hearts, clubs, diamonds
+    spades, hearts, clubs, diamonds, none, undefined
 };
 
 enum class rank {

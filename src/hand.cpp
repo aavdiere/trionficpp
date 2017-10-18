@@ -12,7 +12,7 @@ const card& hand::remove_at_index(uint8_t index) {
     return m_data[m_count];
 }
 
-const card& hand::operator[](uint8_t index) {
+const card& hand::operator[](uint8_t index) const {
     if (index < m_count)
         return m_data[index];
     else

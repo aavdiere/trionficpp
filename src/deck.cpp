@@ -18,15 +18,15 @@ void deck::shuffle() {
     std::shuffle(m_data.begin(), m_data.end(), m_generator);
 };
 
-card * const deck::first() {
+card * const deck::first_hand() {
     return &m_data[0];
 };
-card * const deck::second() {
+card * const deck::second_hand() {
     return &m_data[8];
 };
-card * const deck::third() {
+card * const deck::third_hand() {
     return &m_data[16];
 };
-card * const deck::fourth() {
+card * const deck::fourth_hand() {
     return &m_data[24];
 };

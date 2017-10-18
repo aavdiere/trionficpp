@@ -1,8 +1,21 @@
 #pragma once
+#include <array>
+
+#include "defines.h"
 #include "card.h"
 
 class table {
 public:
-    // Write custom type for fixed array with empty elements
-    card first, second, third, fourth;
+    table() : m_count(0) {};
+    ~table() = default;
+
+    void add(const card& played_card);
+    void clear();
+
+    uint8_t count() const;
+
+    const card& operator[](uint8_t index) const;
+private:
+    std::array<card, 4> m_data;
+    uint8_t m_count;
 };
