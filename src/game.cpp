@@ -1,21 +1,21 @@
 #include "game.h"
 
-game::game() : m_players({ player(m_deck.first_hand()), player(m_deck.second_hand()), player(m_deck.third_hand()), player(m_deck.fourth_hand()) }) {
-    
-};
+game::game() : m_players(m_deck) {};
 
 bool game::ongoing() {
-    return false;
+    static bool running = false;
+    running = !running;
+    return running;
 };
 
 void game::play() {
     while (this->ongoing()) {
-        // this->shuffle_cards();
+        m_deck.shuffle();
 
-        // this->state.trump = this->players[ this->state.player_map[3] ].choose_trump();
-
+        m_state.trump = m_players[0].choose_trump();
         for (uint8_t i = 0; i < 8; i++) {
-            // this->players[ this->state.player_map[0] ].make_move(this->state);
+            for (uint8_t j = 0; j < 4; m_state.table.add(m_players[1 + j++].make_move(m_state)));
+            m_state.table.clear();
         }
     }
 };

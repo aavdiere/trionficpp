@@ -1,9 +1,9 @@
 #pragma once
-#include "defines.h"
 #include "models.h"
 #include "table.h"
 #include "card.h"
 #include "cheat_sheet.h"
+#include "defines.h"
 
 class state {
 public:

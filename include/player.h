@@ -7,7 +7,7 @@
 
 class player {
 public:
-    player(card * const cards);
+    player(card *cards);
     
     suit choose_trump() const;
     const card& make_move(const state& current_state);

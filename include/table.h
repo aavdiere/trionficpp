@@ -1,8 +1,8 @@
 #pragma once
 #include <array>
 
-#include "defines.h"
 #include "card.h"
+#include "defines.h"
 
 class table {
 public:

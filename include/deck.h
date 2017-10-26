@@ -2,19 +2,21 @@
 #include <array>
 #include <random>
 
-#include "defines.h"
 #include "card.h"
+#include "defines.h"
 
 class deck {
 public:
+    static std::mt19937 generator;
+    static bool generator_is_set;
+
     deck();
 
     void shuffle();
-    card * const first_hand();
-    card * const second_hand();
-    card * const third_hand();
-    card * const fourth_hand();
+    card *first_hand();
+    card *second_hand();
+    card *third_hand();
+    card *fourth_hand();
 private:
     std::array<card, 32> m_data;
-    std::mt19937 m_generator;
 };

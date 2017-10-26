@@ -1,32 +1,37 @@
-#include "deck.h"
-
 #include <algorithm>
 
+#include "deck.h"
+
+bool deck::generator_is_set = false;
+std::mt19937 deck::generator;
+
 deck::deck() {
-    std::random_device rd;
-    std::mt19937 g(rd());
-    m_generator = std::move(g);
+    if (!generator_is_set) {
+        std::random_device rd;
+        std::mt19937 g(rd());
+        generator = std::move(g);
+    }
 
     for (uint8_t i = 0; i < 4; i++)
         for (uint8_t j = 0; j < 8; j++)
             m_data[i * 8 + j] = card(static_cast<suit>(i), 
                                      static_cast<rank>(j));
-    std::shuffle(m_data.begin(), m_data.end(), m_generator);
+    std::shuffle(m_data.begin(), m_data.end(), generator);
 };
 
 void deck::shuffle() {
-    std::shuffle(m_data.begin(), m_data.end(), m_generator);
+    std::shuffle(m_data.begin(), m_data.end(), generator);
 };
 
-card * const deck::first_hand() {
+card *deck::first_hand() {
     return &m_data[0];
 };
-card * const deck::second_hand() {
+card *deck::second_hand() {
     return &m_data[8];
 };
-card * const deck::third_hand() {
+card *deck::third_hand() {
     return &m_data[16];
 };
-card * const deck::fourth_hand() {
+card *deck::fourth_hand() {
     return &m_data[24];
 };

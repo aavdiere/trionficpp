@@ -1,6 +1,6 @@
 #pragma once
-#include "defines.h"
 #include "trick.h"
+#include "defines.h"
 
 struct Deal {
     trick tricks[8];

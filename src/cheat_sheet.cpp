@@ -1,6 +1,6 @@
-#include "cheat_sheet.h"
-
 #include <algorithm>
+
+#include "cheat_sheet.h"
 
 cheat_sheet::cheat_sheet() : m_count({32, 32, 32, 32}) {
     for (uint8_t i = 0; i < 32; i++)

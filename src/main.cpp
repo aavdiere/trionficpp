@@ -1,9 +1,9 @@
-#include "game.h"
-
 #ifdef DEBUG
 #include <iostream>
 #include "cheat_sheet.h"
 #endif // DEBUG
+
+#include "game.h"
 
 int main() {
     #ifdef DEBUG

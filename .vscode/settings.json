@@ -26,6 +26,7 @@
         "__split_buffer": "cpp",
         "array": "cpp",
         "iterator": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "algorithm": "cpp"
     }
 }
