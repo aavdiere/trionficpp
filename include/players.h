@@ -6,7 +6,7 @@
 
 class players {
 public:
-    players(deck carddeck);
+    players(deck& carddeck);
 
     void set_winner(uint8_t winner) { m_winner = winner; }
 
