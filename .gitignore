@@ -2,3 +2,5 @@ trionfi.make
 Makefile
 bin/
 .DS_Store
+*.xcodeproj/
+*.xcworkspace/
