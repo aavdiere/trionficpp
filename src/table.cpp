@@ -12,6 +12,10 @@ void table::clear() {
 uint8_t table::count() const {
     return m_count;
 }
+bool table::follows_suit(const card& card) const {
+    if (m_count == 0) return true;
+    else return card.suit == m_data[0].suit;
+}
 const card& table::operator[](uint8_t index) const {
     if (index < m_count)
         return m_data[index];

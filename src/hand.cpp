@@ -41,6 +41,12 @@ const unsigned int hand::value_special() const {
     }
     return result;
 }*/
+bool hand::has_suit(suit suit_to_have) const {
+
+}
+bool hand::has_higher(card& card) const {
+
+}
 const card& hand::remove_at_index(uint8_t index) {
     std::swap(m_data[index], m_data[--m_count]);
     return m_data[m_count];

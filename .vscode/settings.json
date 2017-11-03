@@ -7,6 +7,28 @@
         "**/.DS_Store": true,
         "**/.gitignore": true,
         "**/.vscode": true,
-        "**/premake4.lua": true
+        "**/premake4.lua": true,
+        "**/bin": true,
+        "**/Makefile": true,
+        "**/*.make": true
+    },
+    "files.associations": {
+        "locale": "cpp",
+        "string": "cpp",
+        "__locale": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "new": "cpp",
+        "stdexcept": "cpp",
+        "typeinfo": "cpp",
+        "__bit_reference": "cpp",
+        "__split_buffer": "cpp",
+        "array": "cpp",
+        "iterator": "cpp",
+        "string_view": "cpp",
+        "vector": "cpp",
+        "bitset": "cpp"
     }
 }
