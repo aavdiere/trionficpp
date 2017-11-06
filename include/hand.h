@@ -13,7 +13,7 @@ public:
     /*const unsigned int value(const suit& s) const;
     const unsigned int value_special(const suit& s) const;*/
     bool has_suit(suit suit_to_have) const;
-    bool has_higher(card& card) const;
+    bool has_higher(card& baseline_card) const;
 
     const card& operator[](uint8_t index) const;
     std::array<card, 8>::iterator begin() { return std::array<card, 8>::iterator(m_data); }
