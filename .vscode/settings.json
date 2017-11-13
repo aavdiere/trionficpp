@@ -13,6 +13,7 @@
         "**/*.make": true
     },
     "files.associations": {
+        "*.m": "matlab",
         "locale": "cpp",
         "string": "cpp",
         "__locale": "cpp",
@@ -29,6 +30,8 @@
         "iterator": "cpp",
         "string_view": "cpp",
         "vector": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "algorithm": "cpp",
+        "chrono": "cpp"
     }
 }

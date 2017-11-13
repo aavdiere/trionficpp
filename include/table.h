@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <iostream>
 
 #include "card.h"
 #include "defines.h"
@@ -23,6 +24,8 @@ public:
     std::array<card, 4>::iterator end() { return m_data.begin() + m_count; }
     std::array<card, 4>::const_iterator end() const { return m_data.begin() + m_count; }
     std::array<card, 4>::const_iterator cend() const { return m_data.cbegin() + m_count; }
+
+    friend std::ostream& operator<<(std::ostream& stream, const table& table);
 private:
     std::array<card, 4> m_data;
     uint8_t m_count;
