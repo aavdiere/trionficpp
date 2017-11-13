@@ -48,12 +48,19 @@ bool hand::has_suit(suit suit_to_have) const {
     }
     return false;
 }
-bool hand::has_higher(card& baseline_card) const {
+bool hand::has_higher(const card& baseline_card) const {
     for (auto& card : *this) {
         if (card > baseline_card)
             return true;
     }
     return false;
+}
+bool hand::has_other(suit suit_to_not_have) const {
+    for (auto& card : *this) {
+        if (card.suit != suit_to_not_have)
+            return false;
+    }
+    return true;
 }
 const card& hand::remove_at_index(uint8_t index) {
     std::swap(m_data[index], m_data[--m_count]);

@@ -61,6 +61,40 @@
                 "panel": "shared"
             },
             "problemMatcher": []
+        },
+        {
+            "taskName": "run",
+            "type": "process",
+            "command": "./bin/debug/trionfi",
+            "isBackground": false,
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "focus": false,
+                "panel": "shared"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "owner": "clang++",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}/src"
+                ],
+                "pattern": [
+                    {
+                        "regexp": "^(.*)$",
+                        "message": 1
+                    },
+                    {
+                        "regexp": "#0\\s(.*)\\sin\\s(.*)\\s(.*):(\\d+)$",
+                        "file": 3,
+                        "location": 4
+                    }
+                ]
+            }
         }
     ]
 }
