@@ -74,15 +74,15 @@ std::ostream& operator<<(std::ostream& stream, const table& table) {
             switch (card.suit) {
             case suit::spades:
                 if (i == 0)      stream << "   .    ";
-                else if (i == 1) stream << "  / \   ";
+                else if (i == 1) stream << "  / \\   ";
                 else if (i == 2) stream << " (_,_)  ";
                 else             stream << "   I    ";
                 break;
             case suit::hearts:
                 if (i == 0)      stream << "  _  _  ";
-                else if (i == 1) stream << " ( \/ ) ";
-                else if (i == 2) stream << "  \  /  ";
-                else             stream << "   \/   ";
+                else if (i == 1) stream << " ( \\/ ) ";
+                else if (i == 2) stream << "  \\  /  ";
+                else             stream << "   \\/   ";
                 break;
             case suit::clubs:
                 if (i == 0)      stream << "   _    ";
@@ -91,10 +91,12 @@ std::ostream& operator<<(std::ostream& stream, const table& table) {
                 else             stream << "   Y    ";
                 break;
             case suit::diamonds:
-                if (i == 0)      stream << "   /\   ";
-                else if (i == 1) stream << "  /  \  ";
-                else if (i == 2) stream << "  \  /  ";
-                else             stream << "   \/   ";
+                if (i == 0)      stream << "   /\\   ";
+                else if (i == 1) stream << "  /  \\  ";
+                else if (i == 2) stream << "  \\  /  ";
+                else             stream << "   \\/   ";
+                break;
+            default:
                 break;
             }
         }

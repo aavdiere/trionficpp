@@ -18,5 +18,10 @@ suit player::choose_trump() const {
 }
 
 const card& player::make_move(const state& current_state) {
-    return m_hand.remove_at_index(0);
+    for (uint8_t i = 0; i < m_hand.count(); i++) {
+        if (current_state.valid_move(m_hand[i], m_hand)) {
+            return m_hand.remove_at_index(i);
+        }
+    }
+    throw std::range_error("No valid move possible, this should not happen.");
 }
