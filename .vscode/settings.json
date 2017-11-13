@@ -32,6 +32,8 @@
         "vector": "cpp",
         "bitset": "cpp",
         "algorithm": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iostream": "cpp",
+        "random": "cpp"
     }
 }

@@ -50,12 +50,30 @@ bool state::valid_move(const card& possible_move, const hand& hand) const {
             // did follow suit
             if (this->table.count() % 2 != this->table.winning() % 2) {
                 // partner is not winning
-                if (hand.has_higher(this->table[this->table.winning()])) {
-                    // has a higher card than the card that is winning
-                    return possible_move > this->table[this->table.winning()];
+                if (this->table[this->table.winning()].suit == this->trump) {
+                    // winning card is trump
+                    if (possible_move.suit == this->trump) {
+                        // current suit is trump
+                        if (hand.has_higher(this->table[this->table.winning()])) {
+                            // has a higher card than the card that is winning
+                            return possible_move > this->table[this->table.winning()];
+                        } else {
+                            // has no higher card than the card that is winning
+                            return true;
+                        }
+                    } else {
+                        // current suit is not trump
+                        return true;
+                    }
                 } else {
-                    // has no higher card than the card that is winning
-                    return true;
+                    // winning card is not trump
+                    if (hand.has_higher(this->table[this->table.winning()])) {
+                        // has a higher card than the card that is winning
+                        return possible_move > this->table[this->table.winning()];
+                    } else {
+                        // has no higher card than the card that is winning
+                        return true;
+                    }
                 }
             } else {
                 // partner is winning

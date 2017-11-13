@@ -35,109 +35,110 @@ const card& table::operator[](uint8_t index) const {
         throw std::out_of_range("Trying to access index out of range.");
 }
 std::ostream& operator<<(std::ostream& stream, const table& table) {
-    for (uint8_t i = 0; i < table.m_count; i++)
-        stream << ".--------";
-    stream << "." << "\n";
-    for (auto& card : table) {
-        stream << "|";
-        uint8_t r = 7;
-        switch (card.rank) {
-        case rank::manille:
-            stream << "10";
-            break;
-        case rank::ace:
-            stream << "A ";
-            break;
-        case rank::king:
-            stream << "K ";
-            break;
-        case rank::queen:
-            stream << "Q ";
-            break;
-        case rank::jack:
-            stream << "J ";
-            break;
-        case rank::nine:
-            r++;
-        case rank::eight:
-            r++;
-        case rank::seven:
-            stream << r << " ";
-            break;
-        }
-        stream << "      ";
-    }
-    stream << "|" << "\n";
-    for (uint8_t i = 0; i < 4; i++) {
+    if (table.m_count != 0) {
+        for (uint8_t i = 0; i < table.m_count; i++)
+            stream << ".--------";
+        stream << "." << "\n";
         for (auto& card : table) {
             stream << "|";
-            switch (card.suit) {
-            case suit::spades:
-                if (i == 0)      stream << "   .    ";
-                else if (i == 1) stream << "  / \\   ";
-                else if (i == 2) stream << " (_,_)  ";
-                else             stream << "   I    ";
+            uint8_t r = 7;
+            switch (card.rank) {
+            case rank::manille:
+                stream << "10";
                 break;
-            case suit::hearts:
-                if (i == 0)      stream << "  _  _  ";
-                else if (i == 1) stream << " ( \\/ ) ";
-                else if (i == 2) stream << "  \\  /  ";
-                else             stream << "   \\/   ";
+            case rank::ace:
+                stream << "A ";
                 break;
-            case suit::clubs:
-                if (i == 0)      stream << "   _    ";
-                else if (i == 1) stream << "  ( )   ";
-                else if (i == 2) stream << " (_x_)  ";
-                else             stream << "   Y    ";
+            case rank::king:
+                stream << "K ";
                 break;
-            case suit::diamonds:
-                if (i == 0)      stream << "   /\\   ";
-                else if (i == 1) stream << "  /  \\  ";
-                else if (i == 2) stream << "  \\  /  ";
-                else             stream << "   \\/   ";
+            case rank::queen:
+                stream << "Q ";
                 break;
-            default:
+            case rank::jack:
+                stream << "J ";
+                break;
+            case rank::nine:
+                r++;
+            case rank::eight:
+                r++;
+            case rank::seven:
+                stream << r << " ";
+                break;
+            }
+            stream << "      ";
+        }
+        stream << "|" << "\n";
+        for (uint8_t i = 0; i < 4; i++) {
+            for (auto& card : table) {
+                stream << "|";
+                switch (card.suit) {
+                case suit::spades:
+                    if (i == 0)      stream << "   .    ";
+                    else if (i == 1) stream << "  / \\   ";
+                    else if (i == 2) stream << " (_,_)  ";
+                    else             stream << "   I    ";
+                    break;
+                case suit::hearts:
+                    if (i == 0)      stream << "  _  _  ";
+                    else if (i == 1) stream << " ( \\/ ) ";
+                    else if (i == 2) stream << "  \\  /  ";
+                    else             stream << "   \\/   ";
+                    break;
+                case suit::clubs:
+                    if (i == 0)      stream << "   _    ";
+                    else if (i == 1) stream << "  ( )   ";
+                    else if (i == 2) stream << " (_x_)  ";
+                    else             stream << "   Y    ";
+                    break;
+                case suit::diamonds:
+                    if (i == 0)      stream << "   /\\   ";
+                    else if (i == 1) stream << "  /  \\  ";
+                    else if (i == 2) stream << "  \\  /  ";
+                    else             stream << "   \\/   ";
+                    break;
+                default:
+                    break;
+                }
+            }
+            stream << "|" << "\n";
+        }
+        for (auto& card : table) {
+            stream << "|      ";
+            uint8_t r = 7;
+            switch (card.rank) {
+            case rank::manille:
+                stream << "10";
+                break;
+            case rank::ace:
+                stream << " A";
+                break;
+            case rank::king:
+                stream << " K";
+                break;
+            case rank::queen:
+                stream << " Q";
+                break;
+            case rank::jack:
+                stream << " J";
+                break;
+            case rank::nine:
+                r++;
+            case rank::eight:
+                r++;
+            case rank::seven:
+                stream << " " << r;
                 break;
             }
         }
         stream << "|" << "\n";
-    }
-    for (auto& card : table) {
-        stream << "|      ";
-        uint8_t r = 7;
-        switch (card.rank) {
-        case rank::manille:
-            stream << "10";
-            break;
-        case rank::ace:
-            stream << " A";
-            break;
-        case rank::king:
-            stream << " K";
-            break;
-        case rank::queen:
-            stream << " Q";
-            break;
-        case rank::jack:
-            stream << " J";
-            break;
-        case rank::nine:
-            r++;
-        case rank::eight:
-            r++;
-        case rank::seven:
-            stream << " " << r;
-            break;
+        if (table.m_count != 0) {
+            stream << "`--------";
+            for (uint8_t i = 1; i < table.m_count; i++) {
+                stream << "^--------";
+            }
+            stream << "'";
         }
     }
-    stream << "|" << "\n";
-    if (table.m_count != 0) {
-        stream << "`--------";
-        for (uint8_t i = 1; i < table.m_count; i++) {
-            stream << "^--------";
-        }
-        stream << "'";
-    }
-    stream << "\n";
     return stream;
 }    
