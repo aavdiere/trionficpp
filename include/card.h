@@ -39,4 +39,23 @@ public:
     constexpr bool operator<=(const card& rhs) const noexcept {
         return !(*this > rhs);
     }
+    constexpr uint8_t operator+(const uint8_t rhs) const noexcept {
+        uint8_t r = 0;
+        switch (this->rank) {
+        case rank::manille:
+            r++;
+        case rank::ace:
+            r++;
+        case rank::king:
+            r++;
+        case rank::queen:
+            r++;
+        case rank::jack:
+            r++;
+            break;
+        default:
+            break;
+        }
+        return rhs + r;
+    }
 };

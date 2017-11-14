@@ -7,7 +7,7 @@
 
 class table {
 public:
-    table(const suit& trump) : m_count(0), m_trump(&trump) {};
+    table(const suit& trump) : m_count(0), m_trump(&trump), m_score(0) {};
     ~table() = default;
 
     void add(const card& played_card);
@@ -16,6 +16,7 @@ public:
     uint8_t count() const;
     bool follows_suit(const card& card) const;
     uint8_t winning() const;
+    uint8_t score() const;
 
     const card& operator[](uint8_t index) const;
     std::array<card, 4>::iterator begin() { return m_data.begin(); }
@@ -31,4 +32,5 @@ private:
     uint8_t m_count;
     const suit *m_trump;
     uint8_t m_winning;
+    uint8_t m_score;
 };

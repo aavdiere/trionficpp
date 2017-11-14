@@ -21,10 +21,10 @@ project "trionfi"
     configuration "debug"
         defines { "DEBUG" }
         buildoptions {
-            "-fsanitize=address"
+--            "-fsanitize=address"
         }
         linkoptions {
-            "-fsanitize=address"
+--            "-fsanitize=address"
         }
         flags { "Symbols" }
         targetdir "bin/debug"
@@ -32,4 +32,5 @@ project "trionfi"
     configuration "release"
         targetdir "bin/release"
         defines { "NDEBUG" }
+        buildoptions { "-03" }
         flags { "Optimize" }

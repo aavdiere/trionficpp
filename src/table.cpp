@@ -2,6 +2,7 @@
 
 void table::add(const card& played_card) {
     if (m_count < 4) {
+        m_score = played_card + m_score;
         m_data[m_count++] = played_card;
         const suit trump = *m_trump;
         if (m_count == 1) {
@@ -17,9 +18,13 @@ void table::add(const card& played_card) {
 }
 void table::clear() {
     m_count = 0;
+    m_score = 0;
 }
 uint8_t table::count() const {
     return m_count;
+}
+uint8_t table::score() const {
+    return m_score;
 }
 bool table::follows_suit(const card& card) const {
     if (m_count == 0) return true;

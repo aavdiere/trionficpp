@@ -8,7 +8,7 @@ class players {
 public:
     players(deck& carddeck);
 
-    void set_winner(uint8_t winner) { m_winner = winner; }
+    void set_winner(uint8_t winner) { m_winner = (m_winner + winner) % 4; }
 
     player& operator[](uint8_t index);
 private:

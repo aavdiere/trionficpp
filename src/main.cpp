@@ -1,3 +1,5 @@
+#include <chrono>
+#include <ratio>
 #ifdef DEBUG
 #include <iostream>
 #include "cheat_sheet.h"
@@ -15,9 +17,12 @@ int main() {
     std::cout << std::flush;
     #endif // DEBUG
 
+    auto start = std::chrono::high_resolution_clock::now();
     game current_game;
-
     current_game.play();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start);
+
+    std::cout << "Passed time [us]: " << duration.count() << "\n";
 
     return 0;
 }

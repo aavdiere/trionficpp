@@ -34,6 +34,9 @@
         "algorithm": "cpp",
         "chrono": "cpp",
         "iostream": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "atomic": "cpp",
+        "ios": "cpp",
+        "system_error": "cpp"
     }
 }

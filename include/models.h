@@ -10,3 +10,7 @@ std::ostream& operator<<(std::ostream& stream, const suit& suit);
 enum class rank {
     seven, eight, nine, jack, queen, king, ace, manille
 };
+
+enum class team {
+    black, white
+};
