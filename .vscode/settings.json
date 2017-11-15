@@ -38,7 +38,8 @@
         "atomic": "cpp",
         "ios": "cpp",
         "system_error": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "memory": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

@@ -2,33 +2,63 @@
 
 #include "cheat_sheet.h"
 
-cheat_sheet::cheat_sheet() : m_count({32, 32, 32, 32}) {
+cheat_sheet::cheat_sheet() : m_hands({hand(&m_data[0][0], 32), hand(&m_data[1][0], 32), hand(&m_data[2][0], 32), hand(&m_data[3][0], 32)}), m_count({32, 32, 32, 32}) {
     for (uint8_t i = 0; i < 32; i++)
         for (uint8_t j = 0; j < 4; m_data[j++][i] = card(static_cast<suit>(i / 8), static_cast<rank>(i % 8)));
 }
 void cheat_sheet::reset() {
     m_count = {32, 32, 32, 32};
+    for (auto& hand : m_hands)
+        hand.reset();
 }
 void cheat_sheet::analyse(const table& table) {
-    
+    static enum class state {
+        from_valid_moves, followed, trump_exists, trump_played, partner_winning, lower_trump, shouldve_played_trump, done
+    } s;
+    while (s == state::done) {
+        switch(s) {
+        case state::from_valid_moves:
+            break;
+        case state::followed:
+            break;
+        case state::trump_exists:
+            break;
+        case state::trump_played:
+            break;
+        case state::partner_winning:
+            break;
+        case state::lower_trump:
+            break;
+        case state::shouldve_played_trump:
+            break;
+        case state::done:
+            break;
+        }
+    }
 }
 void cheat_sheet::remove_card(const card& card_to_remove) {
     for (uint8_t i = 0; i < 4; i++)
         remove_card(card_to_remove, i);
 }
 void cheat_sheet::remove_card(const card& card_to_remove, const uint8_t player_id) {
-    auto el = std::find(m_data[player_id].begin(), m_data[player_id].begin() + m_count[player_id], card_to_remove);
-    if (el != m_data[player_id].begin() + m_count[player_id])
-        std::swap(*el, m_data[player_id][--m_count[player_id]]);
+    auto el = std::find(m_hands[player_id].begin(), m_hands[player_id].end(), card_to_remove);
+    if (el != m_hands[player_id].end()) {
+        m_hands[player_id].remove_at_index(el - m_hands[player_id].begin());
+    }
+    m_count[player_id]--;
 }
 void cheat_sheet::remove_suit(const suit& suit_to_remove) {
     for (uint8_t i = 0; i < 4; i++)
         remove_suit(suit_to_remove, i);
 }
 void cheat_sheet::remove_suit(const suit& suit_to_remove, const uint8_t player_id) {
-    for (uint8_t i = m_count[player_id] - 1; i < 0xff; i--)
-        if (m_data[player_id][i].suit == suit_to_remove)
-            std::swap(m_data[player_id][i], m_data[player_id][--m_count[player_id]]);
+    uint8_t count = m_hands[player_id].count();
+    for (uint8_t i = count - 1; i < 0xff; i--) {
+        if (m_hands[player_id][i].suit == suit_to_remove) {
+            m_hands[player_id].remove_at_index(i);
+            m_count[player_id]--;
+        }
+    }
 }
 void cheat_sheet::remove_all_higher(const card& minimum_rank, const uint8_t player_id) {
     for (uint8_t i = m_count[player_id] - 1; i < 0xff; i--)

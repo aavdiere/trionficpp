@@ -5,44 +5,51 @@
 
 hand::hand(card *data) : 
                     m_data(data),
-                    m_count(8) {};
+                    m_count(8),
+                    m_init_count(8) {};
+hand::hand(card *data, uint8_t count) : 
+                    m_data(data),
+                    m_count(count),
+                    m_init_count(count) {};
 void hand::reset() {
-    m_count = 8;
+    m_count = m_init_count;
 }
 const uint8_t hand::count() const { return m_count; };
-/*const unsigned int hand::value(const suit& s) const {
-    unsigned int result = 0;
-    for (uint8_t i = 0; i < m_count; i++) {
-        if (m_data[i].suit == s) {
-            switch (m_data[i].rank) {
-            case rank::seven:
-            case rank::eight:
-            case rank::nine:
-                break;
+/*
+    const unsigned int hand::value(const suit& s) const {
+        unsigned int result = 0;
+        for (uint8_t i = 0; i < m_count; i++) {
+            if (m_data[i].suit == s) {
+                switch (m_data[i].rank) {
+                case rank::seven:
+                case rank::eight:
+                case rank::nine:
+                    break;
 
-            case rank::jack:
-                result += 1;
-            case rank::queen:
-                result += 1;
-            case rank::king:
-                result += 1;
-            case rank::ace:
-                result += 1;
-            case rank::manille:
-                result += 1;
-                break;
+                case rank::jack:
+                    result += 1;
+                case rank::queen:
+                    result += 1;
+                case rank::king:
+                    result += 1;
+                case rank::ace:
+                    result += 1;
+                case rank::manille:
+                    result += 1;
+                    break;
+                }
             }
         }
+        return result;
     }
-    return result;
-}
-const unsigned int hand::value_special() const {
-    unsigned int result = 0;
-    for (uint8_t i = 0; i < m_count; i++) {
+    const unsigned int hand::value_special() const {
+        unsigned int result = 0;
+        for (uint8_t i = 0; i < m_count; i++) {
 
+        }
+        return result;
     }
-    return result;
-}*/
+*/
 bool hand::has_suit(suit suit_to_have) const {
     for (auto& card : *this) {
         if (card.suit == suit_to_have)

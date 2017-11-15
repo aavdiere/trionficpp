@@ -3,6 +3,7 @@
 
 #include "card.h"
 #include "table.h"
+#include "hand.h"
 
 class cheat_sheet {
 public:
@@ -15,6 +16,7 @@ public:
     friend bool cheat_sheet_test();
 private:
     std::array<std::array<card, 32>, 4> m_data;
+    std::array<hand, 4> m_hands;
     std::array<uint8_t, 4> m_count;
 
     void remove_card(const card& card_to_remove);
