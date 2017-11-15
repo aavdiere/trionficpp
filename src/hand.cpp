@@ -6,7 +6,9 @@
 hand::hand(card *data) : 
                     m_data(data),
                     m_count(8) {};
-
+void hand::reset() {
+    m_count = 8;
+}
 const uint8_t hand::count() const { return m_count; };
 /*const unsigned int hand::value(const suit& s) const {
     unsigned int result = 0;
@@ -58,9 +60,9 @@ bool hand::has_higher(const card& baseline_card) const {
 bool hand::has_other(suit suit_to_not_have) const {
     for (auto& card : *this) {
         if (card.suit != suit_to_not_have)
-            return false;
+            return true;
     }
-    return true;
+    return false;
 }
 const card& hand::remove_at_index(uint8_t index) {
     std::swap(m_data[index], m_data[--m_count]);

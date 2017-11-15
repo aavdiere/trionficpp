@@ -15,6 +15,8 @@ public:
     void up_multiplier();
 
     uint8_t multiplier() const;
+    uint8_t rounds() const;
+    uint8_t max_score() const;
 
     friend std::ostream& operator<<(std::ostream& stream, tree& tree);
 private:

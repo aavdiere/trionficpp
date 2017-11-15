@@ -7,7 +7,9 @@
 
 class table {
 public:
-    table(const suit& trump) : m_count(0), m_trump(&trump), m_score(0) {};
+    const uint8_t& player_offset;
+
+    table(const suit& trump, const uint8_t& player_offset) : player_offset(player_offset), m_count(0), m_trump(trump), m_score(0) {};
     ~table() = default;
 
     void add(const card& played_card);
@@ -30,7 +32,7 @@ public:
 private:
     std::array<card, 4> m_data;
     uint8_t m_count;
-    const suit *m_trump;
+    const suit &m_trump;
     uint8_t m_winning;
     uint8_t m_score;
 };

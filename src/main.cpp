@@ -20,7 +20,7 @@ int main() {
     auto start = std::chrono::high_resolution_clock::now();
     game current_game;
     current_game.play();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() - start);
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - start);
 
     std::cout << "Passed time [us]: " << duration.count() << "\n";
 

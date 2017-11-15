@@ -5,6 +5,9 @@
 #include "deck.h"
 
 player::player(card *cards) : m_hand(cards) {}
+void player::reset_cards() {
+    m_hand.reset();
+}
 bool player::will_tap(const suit& trump) const {
     return false;
 }

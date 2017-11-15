@@ -9,6 +9,8 @@ class player {
 public:
     player(card *cards);
     
+    void reset_cards();
+
     bool will_tap(const suit& trump) const;
     bool will_retap(const suit& trump) const;
     suit choose_trump() const;

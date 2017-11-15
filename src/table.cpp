@@ -4,13 +4,12 @@ void table::add(const card& played_card) {
     if (m_count < 4) {
         m_score = played_card + m_score;
         m_data[m_count++] = played_card;
-        const suit trump = *m_trump;
         if (m_count == 1) {
             m_winning = 0;
         } else {
             if (m_data[m_count - 1] > m_data[m_winning]) {
                 m_winning = m_count - 1;
-            } else if (m_data[m_count - 1].suit == trump && m_data[m_winning].suit != trump) {
+            } else if (m_data[m_count - 1].suit == m_trump && m_data[m_winning].suit != m_trump) {
                 m_winning = m_count - 1;
             }
         }

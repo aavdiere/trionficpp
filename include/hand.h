@@ -8,6 +8,8 @@ class hand {
 public:
     hand(card *data);
 
+    void reset();
+
     const uint8_t count() const;
     const card& remove_at_index(uint8_t index);
     /*const unsigned int value(const suit& s) const;

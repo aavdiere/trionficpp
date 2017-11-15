@@ -9,10 +9,12 @@ class players {
 public:
     players(deck& carddeck);
 
-    void set_winner(uint8_t winner) { m_winner = (m_winner + winner) % 4; }
+    void set_winner(uint8_t winner);
+    void reset();
 
-    team get_team(uint8_t winner) const { return team((m_winner + winner) % 2); }
-
+    team get_team(uint8_t winner) const;
+    const uint8_t& get_winner() const;
+    
     player& operator[](uint8_t index);
 private:
     std::array<player, 4> m_players;

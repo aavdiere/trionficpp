@@ -6,9 +6,11 @@ cheat_sheet::cheat_sheet() : m_count({32, 32, 32, 32}) {
     for (uint8_t i = 0; i < 32; i++)
         for (uint8_t j = 0; j < 4; m_data[j++][i] = card(static_cast<suit>(i / 8), static_cast<rank>(i % 8)));
 }
-
 void cheat_sheet::reset() {
     m_count = {32, 32, 32, 32};
+}
+void cheat_sheet::analyse(const table& table) {
+    
 }
 void cheat_sheet::remove_card(const card& card_to_remove) {
     for (uint8_t i = 0; i < 4; i++)
