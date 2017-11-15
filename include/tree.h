@@ -1,23 +1,24 @@
 #pragma once
 #include <array>
+#include <iostream>
 
 #include "defines.h"
 #include "models.h"
 
 class tree {
 public:
-    std::array<uint8_t, 2> score;
-    uint8_t rounds;
+    tree();
 
-    tree() : score{0, 0}, rounds(0) {};
+    void clear();
+    void finish_hand();
+    void add(team team, uint8_t score);
+    void up_multiplier();
 
-    void clear() {
-        score = { 0, 0 };
-        rounds = 0;
-    }
+    uint8_t multiplier() const;
 
-    void add(team team, uint8_t new_score) {
-        rounds++;
-        score[static_cast<uint8_t>(team)] += new_score;
-    }
+    friend std::ostream& operator<<(std::ostream& stream, tree& tree);
+private:
+    std::array<uint8_t, 2> m_score, m_hand_score;
+    uint8_t m_rounds;
+    uint8_t m_multiplier;
 };

@@ -5,6 +5,12 @@
 #include "deck.h"
 
 player::player(card *cards) : m_hand(cards) {}
+bool player::will_tap(const suit& trump) const {
+    return false;
+}
+bool player::will_retap(const suit& trump) const {
+    return false;
+}
 suit player::choose_trump() const {
     std::uniform_int_distribution<> dis(0, 3);
 

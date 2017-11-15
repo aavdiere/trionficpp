@@ -3,22 +3,22 @@
 std::ostream& operator<<(std::ostream& stream, const suit& suit){
     switch (suit) {
     case suit::clubs:
-        stream << "trump: clubs" << "\n";
+        stream << "trump: clubs";
         break;
     case suit::diamonds:
-        stream << "trump: diamonds" << "\n";
+        stream << "trump: diamonds";
         break;
     case suit::hearts:
-        stream << "trump: hearts" << "\n";
+        stream << "trump: hearts";
         break;
     case suit::spades:
-        stream << "trump: spades" << "\n";
+        stream << "trump: spades";
         break;
     case suit::none:
-        stream << "trump: none" << "\n";
+        stream << "trump: none";
         break;
     case suit::undefined:
-        stream << "trump: undefined" << "\n";
+        stream << "trump: undefined";
         break;
     }
     return stream;

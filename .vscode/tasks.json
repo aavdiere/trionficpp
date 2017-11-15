@@ -37,7 +37,7 @@
         {
             "taskName": "premake build",
             "type": "shell",
-            "command": "premake4 gmake",
+            "command": "premake4 clean && premake4 gmake",
             "group": "build",
             "isBackground": false,
             "presentation": {
@@ -69,9 +69,9 @@
             "isBackground": false,
             "presentation": {
                 "echo": false,
-                "reveal": "never",
-                "focus": false,
-                "panel": "shared"
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
             },
             "group": {
                 "kind": "test",
