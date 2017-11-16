@@ -2,12 +2,11 @@
 
 #include "cheat_sheet.h"
 
-cheat_sheet::cheat_sheet() : m_hands({hand(&m_data[0][0], 32), hand(&m_data[1][0], 32), hand(&m_data[2][0], 32), hand(&m_data[3][0], 32)}), m_count({32, 32, 32, 32}) {
+cheat_sheet::cheat_sheet() : m_hands({hand(&m_data[0][0], 32), hand(&m_data[1][0], 32), hand(&m_data[2][0], 32), hand(&m_data[3][0], 32)}) {
     for (uint8_t i = 0; i < 32; i++)
         for (uint8_t j = 0; j < 4; m_data[j++][i] = card(static_cast<suit>(i / 8), static_cast<rank>(i % 8)));
 }
 void cheat_sheet::reset() {
-    m_count = {32, 32, 32, 32};
     for (auto& hand : m_hands)
         hand.reset();
 }
@@ -45,7 +44,6 @@ void cheat_sheet::remove_card(const card& card_to_remove, const uint8_t player_i
     if (el != m_hands[player_id].end()) {
         m_hands[player_id].remove_at_index(el - m_hands[player_id].begin());
     }
-    m_count[player_id]--;
 }
 void cheat_sheet::remove_suit(const suit& suit_to_remove) {
     for (uint8_t i = 0; i < 4; i++)
@@ -56,14 +54,16 @@ void cheat_sheet::remove_suit(const suit& suit_to_remove, const uint8_t player_i
     for (uint8_t i = count - 1; i < 0xff; i--) {
         if (m_hands[player_id][i].suit == suit_to_remove) {
             m_hands[player_id].remove_at_index(i);
-            m_count[player_id]--;
         }
     }
 }
 void cheat_sheet::remove_all_higher(const card& minimum_rank, const uint8_t player_id) {
-    for (uint8_t i = m_count[player_id] - 1; i < 0xff; i--)
-        if (m_data[player_id][i] >= minimum_rank)
-            std::swap(m_data[player_id][i], m_data[player_id][--m_count[player_id]]);
+    uint8_t count = m_hands[player_id].count();
+    for (uint8_t i = count - 1; i < 0xff; i--) {
+        if (m_hands[player_id][i] >= minimum_rank) {
+            m_hands[player_id].remove_at_index(i);
+        }
+    }
 }
 
 const bool cheat_sheet::has_higher(const card& minimum_rank) const {
@@ -75,8 +75,8 @@ const bool cheat_sheet::has_higher(const card& minimum_rank) const {
 }
 const bool cheat_sheet::has_higher(const card& minimum_rank, const uint8_t player_id) const {
     bool result = false;
-    for (uint8_t i = 0; i < m_count[player_id] && !result; i++)
-        result |= (m_data[player_id][i] > minimum_rank);
+    for (auto& card : m_hands[player_id])
+        result |= (card > minimum_rank);
     return result;
 }
 
@@ -89,8 +89,8 @@ const bool cheat_sheet::has_any(const suit& suit_to_have) const {
 }
 const bool cheat_sheet::has_any(const suit& suit_to_have, const uint8_t player_id) const {
     bool result = false;
-    for (uint8_t i = 0; i < m_count[player_id] && !result; i++)
-        result |= (m_data[player_id][i].suit == suit_to_have);
+    for (auto& card : m_hands[player_id])
+        result |= (card.suit == suit_to_have);
     return result;
 }
 
@@ -101,14 +101,14 @@ bool cheat_sheet_test() {
         cheat_sheet cs;
 
         for (uint8_t i = 0; i < 4; i++)
-            result |= (cs.m_count[i] != 32);
+            result |= (cs.m_hands[i].count() != 32);
 
         for (uint8_t i = 0; i < 8; i++) {
             rank r = static_cast<rank>(i);
             cs.remove_card(card(suit::diamonds, r));
         }
         for (uint8_t i = 0; i < 4; i++) {
-            result |= (cs.m_count[i] != 24);
+            result |= (cs.m_hands[i].count() != 24);
             result |= !cs.has_higher(card(suit::spades, rank::nine));
             result |= cs.has_higher(card(suit::diamonds, rank::nine));
             result |= cs.has_any(suit::diamonds);
@@ -125,7 +125,7 @@ bool cheat_sheet_test() {
         cs.remove_all_higher(card(suit::clubs, rank::nine), 2);
         cs.remove_all_higher(card(suit::clubs, rank::nine), 3);
         for (uint8_t i = 0; i < 4; i++) {
-            result |= (cs.m_count[0] != 10);
+            result |= (cs.m_hands[0].count() != 10);
             result |= cs.has_higher(card(suit::spades, rank::nine));
             result |= !cs.has_higher(card(suit::diamonds, rank::nine));
             result |= cs.has_higher(card(suit::clubs, rank::nine));

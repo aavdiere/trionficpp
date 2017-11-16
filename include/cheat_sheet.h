@@ -17,7 +17,6 @@ public:
 private:
     std::array<std::array<card, 32>, 4> m_data;
     std::array<hand, 4> m_hands;
-    std::array<uint8_t, 4> m_count;
 
     void remove_card(const card& card_to_remove);
     void remove_card(const card& card_to_remove, const uint8_t player_id);
