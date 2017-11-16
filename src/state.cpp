@@ -3,7 +3,7 @@
 state::state(const uint8_t& player_offset) : m_trump(suit::undefined), m_table(m_trump, player_offset) {}
 void state::add(const card& played_card) {
     m_table.add(played_card);
-    m_possible_cards.analyse(m_table);
+    m_possible_cards.analyse(*this);
 }
 void state::clear_table() {
     m_table.clear();
@@ -87,4 +87,7 @@ bool state::valid_move(const card& possible_move, const hand& hand) const {
             }
         }
     }
+}
+const cheat_sheet& state::get_cheat_sheet() const {
+    return m_possible_cards;
 }

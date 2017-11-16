@@ -17,6 +17,7 @@ public:
     suit trump() const { return m_trump; }
     const table& get_table() const { return m_table; }
     bool valid_move(const card& possible_move, const hand& hand) const;
+    const cheat_sheet& get_cheat_sheet() const;
 private:
     suit m_trump;
     table m_table;

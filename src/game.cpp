@@ -5,7 +5,7 @@
 #if DEBUG
     #define display(x) std::cout << x << "\n"
     #define display_no_new_line(x) std::cout << x
-    #define display_division(j) if (j < 3) { std::cout << "=============================================\n"; }
+    #define display_division(j) std::cout << "=============================================\n"
 #else
     #define display(x)
     #define display_no_new_line(x)
@@ -40,6 +40,7 @@ void game::play() {
                 display(m_players[j]);
                 m_state.add(m_players[j].make_move(m_state));
                 display(m_state.get_table());
+                display(m_state.get_cheat_sheet().print((m_state.get_table().player_offset + j) % 4));
                 display_division(j);
             }
             m_tree.add(m_players.get_team(m_state.get_table().winning()), m_state.get_table().score());

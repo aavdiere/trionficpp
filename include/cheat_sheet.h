@@ -2,8 +2,9 @@
 #include <array>
 
 #include "card.h"
-#include "table.h"
 #include "hand.h"
+
+class state;
 
 class cheat_sheet {
 public:
@@ -11,7 +12,8 @@ public:
     ~cheat_sheet() = default;
 
     void reset();
-    void analyse(const table& table);
+    void analyse(const state& state);
+    std::string print(uint8_t player) const;
 
     friend bool cheat_sheet_test();
 private:
