@@ -32,5 +32,4 @@ project "trionfi"
     configuration "release"
         targetdir "bin/release"
         defines { "NDEBUG" }
-        buildoptions { "-03" }
         flags { "Optimize" }

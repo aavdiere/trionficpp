@@ -2,11 +2,14 @@
 
 state::state(const uint8_t& player_offset) : m_trump(suit::undefined), m_table(m_trump, player_offset) {}
 void state::add(const card& played_card) {
+    m_possible_cards.analyse(*this, played_card);
     m_table.add(played_card);
-    m_possible_cards.analyse(*this);
 }
 void state::clear_table() {
     m_table.clear();
+}
+void state::clear_hand() {
+    m_possible_cards.reset();
 }
 bool state::valid_move(const card& possible_move, const hand& hand) const {
     if (m_table.count() == 0) {

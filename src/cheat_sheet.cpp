@@ -13,13 +13,22 @@ void cheat_sheet::reset() {
     for (auto& hand : m_hands)
         hand.reset();
 }
-void cheat_sheet::analyse(const state& state) {
+void cheat_sheet::analyse(const state& state, const card& current_card) {
+    uint8_t current_player = (state.get_table().player_offset + state.get_table().count()) % 4;
+
+    if (state.get_table().count() == 0) {
+        for (uint8_t i = 0; i < 4; i++)
+            remove_card(current_card, i);
+        return;
+    }
+
     static enum class analyse_state {
         from_valid_moves, followed, trump_exists, trump_played, trump_has_been_played, partner_winning, lower_trump, shouldve_played_trump, done
     } s;
-    uint8_t current_player = (state.get_table().player_offset + state.get_table().count() - 1) % 4;
+
+    s = analyse_state::from_valid_moves;
+    
     hand& possible_cards = m_hands[current_player];
-    const card& current_card = state.get_table()[state.get_table().count() - 1];
     const card& winning_card = state.get_table()[state.get_table().winning()];
     while (s != analyse_state::done) {
         switch(s) {
@@ -59,7 +68,7 @@ void cheat_sheet::analyse(const state& state) {
                 s = analyse_state::done;
             break;
         case analyse_state::partner_winning:
-            if (state.get_table().count() - 1 % 2 == state.get_table().winning() % 2)
+            if (state.get_table().count() % 2 == state.get_table().winning() % 2)
                 s = analyse_state::done;
             else
                 s = analyse_state::lower_trump;
@@ -78,7 +87,7 @@ void cheat_sheet::analyse(const state& state) {
             s = analyse_state::done;
             break;
         case analyse_state::shouldve_played_trump:
-            if (state.get_table().count() - 1 % 2 != state.get_table().winning() % 2) {
+            if (state.get_table().count() % 2 != state.get_table().winning() % 2) {
                 if (winning_card.suit == state.trump()) {
                     remove_all_higher(winning_card, current_player);
                 } else {
@@ -91,6 +100,9 @@ void cheat_sheet::analyse(const state& state) {
             break;
         }
     }
+
+    for (uint8_t i = 0; i < 4; i++)
+        remove_card(current_card, i);
 }
 void cheat_sheet::remove_card(const card& card_to_remove) {
     for (uint8_t i = 0; i < 4; i++)

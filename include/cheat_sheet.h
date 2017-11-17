@@ -12,7 +12,7 @@ public:
     ~cheat_sheet() = default;
 
     void reset();
-    void analyse(const state& state);
+    void analyse(const state& state, const card& current_card);
     std::string print(uint8_t player) const;
 
     friend bool cheat_sheet_test();

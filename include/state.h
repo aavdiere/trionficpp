@@ -13,6 +13,7 @@ public:
     void add(const card& played_card);
     void set_trump(suit trump) { m_trump = trump; }
     void clear_table();
+    void clear_hand();
 
     suit trump() const { return m_trump; }
     const table& get_table() const { return m_table; }
