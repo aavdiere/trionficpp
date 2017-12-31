@@ -25,10 +25,24 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceRoot}",
-                "${workspaceRoot}/include"
+                "${workspaceRoot}/include",
+                "/usr/lib/gcc/x86_64-unknown-linux-gnu/7.2/include",
+                "/usr/include",
+                "/usr/include/c++/7.2",
+                "/usr/include/c++/7.2/x86_64-unknown-linux-gnu"
             ],
             "defines": [],
-            "intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "${workspaceRoot}",
+                    "${workspaceRoot}/include",
+                    "/usr/lib/gcc/x86_64-unknown-linux-gnu/7.2/include",
+                    "/usr/include",
+                    "/usr/include/c++/7.2",
+                    "/usr/include/c++/7.2/x86_64-unknown-linux-gnu"
+                ]
+            }
         },
         {
             "name": "Win32",
