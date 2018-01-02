@@ -39,7 +39,15 @@
         "ios": "cpp",
         "system_error": "cpp",
         "type_traits": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "deque": "cpp",
+        "hash_map": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_map": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
