@@ -15,10 +15,8 @@ project "trionfi"
     language "C++"
     buildoptions { "-std=c++1z" }
     files { "src/*.cpp" }
-    includedirs { "include", "dependencies/dynet/dynet" }
-    libdirs { "dependencies/dynet/build/dynet/" }
+    includedirs { "include", "deps/tiny-dnn" }
     objdir "bin/intermediate"
-    prebuildcommands { "cd dependencies/dynet/ && mkdir -p build && cd build && cmake .. -DEIGEN3_INCLUDE_DIR=../../eigen && make -j 4 && cd ../../../" }
     
     configuration "debug"
         defines { "DEBUG" }

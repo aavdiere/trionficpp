@@ -5,7 +5,9 @@
             "includePath": [
                 "/Library/Developer/CommandLineTools/usr/include/c++/v1",
                 "${workspaceRoot}",
-                "${workspaceRoot}/include"
+                "${workspaceRoot}/include",
+                "${workspaceRoot}/deps/tiny-dnn",
+                "/System/Library/Frameworks/Kernel.framework/Versions/A/Headers"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -17,7 +19,9 @@
                 "path": [
                     "/Library/Developer/CommandLineTools/usr/include/c++/v1",
                     "${workspaceRoot}",
-                    "${workspaceRoot}/include"
+                    "${workspaceRoot}/include",
+                    "${workspaceRoot}/deps/tiny-dnn",
+                    "/System/Library/Frameworks/Kernel.framework/Versions/A/Headers"
                 ]
             }
         },
